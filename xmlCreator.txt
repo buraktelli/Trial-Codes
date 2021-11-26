@@ -1,0 +1,38 @@
+  xmlMaker(feature, geom, layerAndWorkspace) {
+    const formatWFS = new WFS({});
+    const xs = new XMLSerializer();
+    let node
+    var formatGML = new GML({
+      featureNS: layerAndWorkspace.workspace,
+      featureType: layerAndWorkspace.layer.name,
+      srsName: "EPSG:3857",
+      hasZ: true
+    });
+    feature.setGeometry(geom);
+    feature.set("geom", feature.getGeometry());
+    feature.set("geometry", undefined);
+    feature.setGeometryName("geom");
+    feature.getGeometry().transform('EPSG:4326', 'EPSG:3857')
+    for (const item in feature.values_) {
+      if (!feature.values_[item]) {
+        delete feature.values_[item]
+      }
+    }
+    node = formatWFS.writeTransaction(null, [feature], null, formatGML);
+    const xml = xs.serializeToString(node);
+    return xml
+  }
+
+  transactionWithXml(url, layerAndWorkspace, feature, geom) {
+    let options = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const xml = this.xmlMaker(feature, geom, layerAndWorkspace)
+    this.http.post(url, xml, { ...options, responseType: 'text' }).subscribe(res => {
+      if (res.includes('TransactionSummary')) {
+        this.snackBarService.showSnackbar('success', 'Güncelleme Islemi Basariyla Gerceklesti.');
+      } else {
+        this.snackBarService.showSnackbar('warning', 'Güncelleme Islemi Basarisiz Oldu.');
+      }
+    })
+  }

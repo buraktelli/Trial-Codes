@@ -1,0 +1,5 @@
+2021-08-04T07:41:55.127Z [right meow!] error: Hello distributed log files!
+2021-08-04T10:50:55.217Z [right meow!] error: Hello distributed log files!
+2021-08-04T11:00:03.043Z [right meow!] error: Hello distributed log files!
+[31merror[39m: Hello distributed log files! {"service":"user-service","label":"right meow!","timestamp":"2021-08-04T11:00:36.722Z"}
+error: Hello distributed log files! {"service":"user-service","label":"right meow!","timestamp":"2021-08-04T11:00:50.689Z"}

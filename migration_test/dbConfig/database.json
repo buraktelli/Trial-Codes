@@ -1,0 +1,9 @@
+{
+    "dev": {
+      "driver": "pg",
+      "user": "postgres",
+      "password": "anka_vision",
+      "host": "192.168.20.218",
+      "database": "burak_cloud_admin"
+    }
+}

@@ -1,0 +1,35 @@
+select count (id) from panogps
+
+select st_astext(geom) from panogps
+
+SELECT ST_AsText(geom), st_distance(ST_GeomFromText('POINT(37.611100 55.756926)', 4326), geom) as distance, id
+FROM panogps
+WHERE ST_Dwithin(ST_GeomFromText('POINT(37.611100 55.756926)', 4326), geom, 4326)
+ORDER BY distance
+LIMIT 30;
+
+SELECT id, ST_AsText(geom), st_distance(ST_GeomFromText('POINT(32.70816145 41.280915151)', 4326), geom) as distance
+FROM panogps
+WHERE ST_Dwithin(ST_GeomFromText('POINT(32.70816145 41.280915151)', 4326), geom, 4326)
+ORDER BY distance
+LIMIT 10;
+
+SELECT id, ST_AsGeoJson(geom) as geojson, st_distance(ST_GeomFromText('POINT(19.25082534775616 30.98402244415756)', 4326), geom) as distance 
+FROM panogps 
+ORDER BY geom <#> 
+ST_GeomFromText('POINT(29.25082534775616 40.98402244415756)',4326) 
+LIMIT 10
+
+select id, st_distance(ST_GeomFromText('POINT(19.25082534775616 30.98402244415756)', 4326), geom) as distance 
+from panogps
+ORDER BY geom <-> 'SRID=4326;POINT(19.25082534775616 30.98402244415756)'::geometry
+limit 1
+
+WITH index_query AS (
+ SELECT *,
+ ST_Y(geom) || ' ' || ST_X(geom) as latlon,
+ ST_DistanceSphere(geom, st_setsrid(ST_Point(%L, %L), 4326)) as dist
+ FROM %I %s
+ ORDER by geom <#> st_setsrid(ST_Point(%L, %L), 4326) limit 10
+ )
+ SELECT * FROM index_query LIMIT 10

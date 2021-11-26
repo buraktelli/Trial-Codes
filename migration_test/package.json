@@ -1,0 +1,16 @@
+{
+  "name": "migration_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "home.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "db-migrate": "^1.0.0-beta.16",
+    "db-migrate-pg": "^1.2.2",
+    "pg": "^8.7.1"
+  }
+}
