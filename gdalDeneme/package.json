@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "gdal": "^0.11.0",
+    "geojson2shp": "^0.4.0",
     "nodemon": "^2.0.15"
   }
 }
