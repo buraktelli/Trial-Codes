@@ -1,0 +1,285 @@
+[
+    {
+        "ID": "i7mqb2kpopcx5tf5g524ncdoe",
+        "Version": {
+            "Index": 4625455
+        },
+        "CreatedAt": "2021-12-13T06:45:53.53658733Z",
+        "UpdatedAt": "2022-01-04T13:07:44.340665021Z",
+        "Spec": {
+            "Name": "dev_backend",
+            "Labels": {},
+            "TaskTemplate": {
+                "ContainerSpec": {
+                    "Image": "geoanka/cloudapp-backend-dev:Dev_602@sha256:0f038627efb8a965cdb6f28013a1949ab0a8ea6fdb54fe11ab0d171f3baa72b3",
+                    "Env": [
+                        "POSTGIS_USERNAME=postgres",
+                        "POSTGIS_MAINDBNAME=cloud_data",
+                        "GEOSERVER_HOST=geoserver",
+                        "LICENSE_HOST=https://license.ankageo.com/api/v1",
+                        "POSTGIS_LAS_HOST=dev_lasdb",
+                        "PANO_HOST=http://dev_pano:9010/",
+                        "POSTGIS_PASSWORD=anka_vision",
+                        "PANOGPS_TEMP_FOLDER_PATH=/tmp",
+                        "LOG_LEVEL=debug",
+                        "LICENSE_TOKEN=.",
+                        "LDAP_AUTH=false",
+                        "GEOSERVER_PORT=8080",
+                        "ACCESS_TOKEN_EXPIRE_TIME=12h",
+                        "POSTGIS_LASDBNAME=pc_cloud",
+                        "POSTGIS_LAS_PORT=5432",
+                        "POSTGIS_NEWADMINDBNAME=cloud_admin",
+                        "PANO_PORT=9010",
+                        "CLOUD_ACCESS_SECRET_JWT_KEY=%%$^$di)(*khklkjkkx89xxxxxasjosd)HKGTTU*&&^&_)IHJVHJHKBHFR&YBUKJLKJJHHGUYUJHjfhdgutuyiyihbKKLKKH*Y()((*&&^*&^*^))",
+                        "REFRESH_TOKEN_MAX_AGE=60 * 24 * 3600 * 1000",
+                        "BODY_PARSER_BODY_LIMIT=8mb",
+                        "PANOGPS_FOLDER_PATH=/pano",
+                        "REFRESH_TOKEN_EXPIRE_TIME=1h",
+                        "ATTACHMENT_FOLDER_PATH=/attachment",
+                        "REDIS_PORT=6379",
+                        "PORT=9000",
+                        "GEOSERVER_ADMIN_USER=admin",
+                        "POSTGIS_HOST=dev_appdb",
+                        "TOKEN_EXPIRE_TIME=24h",
+                        "POSTGIS_PORT=5432",
+                        "GEOSERVER_ADMIN_PASS=safranbolu2020",
+                        "ALLOW_NODE_CACHE=true",
+                        "JWT_KEY=grfwg67423t67ft4gfAhmad23t4f26734f253f4g7623",
+                        "RASTER_FOLDER_PATH=/data",
+                        "BACKEND_HOST=http://dev_backend:9000/",
+                        "POSTGIS_ADMINDBNAME=cloud_admin",
+                        "REDIS_HOST=dev_redis",
+                        "GEOSERVER_SERVICE=http://geoserver:8080/geoserver/",
+                        "CLOUD_REFRESH_SECRET_JWT_KEY=nbiqwhdiqbnd_+)(*qjsdqwsh%*)(wdiquwe9uuew9817394y213je4o2W$#^%$&^*@1i3je9qdjkndasdj9a8seoqwehj!@"
+                    ],
+                    "Init": false,
+                    "Mounts": [
+                        {
+                            "Type": "bind",
+                            "Source": "/home/jenkins/services/development/attachment",
+                            "Target": "/attachment"
+                        },
+                        {
+                            "Type": "bind",
+                            "Source": "/mnt/4tb/development/geoserver/data",
+                            "Target": "/data"
+                        },
+                        {
+                            "Type": "bind",
+                            "Source": "/mnt/4tb/development/images/pano",
+                            "Target": "/pano"
+                        },
+                        {
+                            "Type": "bind",
+                            "Source": "/mnt/4tb/development/images/tmp",
+                            "Target": "/tmp"
+                        }
+                    ],
+                    "StopGracePeriod": 10000000000,
+                    "DNSConfig": {},
+                    "Isolation": "default"
+                },
+                "Resources": {
+                    "Limits": {},
+                    "Reservations": {}
+                },
+                "RestartPolicy": {
+                    "Condition": "any",
+                    "Delay": 5000000000,
+                    "MaxAttempts": 0
+                },
+                "Placement": {
+                    "Platforms": [
+                        {
+                            "Architecture": "amd64",
+                            "OS": "linux"
+                        }
+                    ]
+                },
+                "Networks": [
+                    {
+                        "Target": "v72c00bt6kzk6rjlcpe3cgv5q"
+                    }
+                ],
+                "ForceUpdate": 0,
+                "Runtime": "container"
+            },
+            "Mode": {
+                "Replicated": {
+                    "Replicas": 1
+                }
+            },
+            "UpdateConfig": {
+                "Parallelism": 1,
+                "FailureAction": "pause",
+                "Monitor": 5000000000,
+                "MaxFailureRatio": 0,
+                "Order": "stop-first"
+            },
+            "RollbackConfig": {
+                "Parallelism": 1,
+                "FailureAction": "pause",
+                "Monitor": 5000000000,
+                "MaxFailureRatio": 0,
+                "Order": "stop-first"
+            },
+            "EndpointSpec": {
+                "Mode": "vip",
+                "Ports": [
+                    {
+                        "Protocol": "tcp",
+                        "TargetPort": 9000,
+                        "PublishedPort": 6000,
+                        "PublishMode": "ingress"
+                    }
+                ]
+            }
+        },
+        "PreviousSpec": {
+            "Name": "dev_backend",
+            "Labels": {},
+            "TaskTemplate": {
+                "ContainerSpec": {
+                    "Image": "geoanka/cloudapp-backend-dev:Dev_601@sha256:0f038627efb8a965cdb6f28013a1949ab0a8ea6fdb54fe11ab0d171f3baa72b3",
+                    "Env": [
+                        "POSTGIS_USERNAME=postgres",
+                        "POSTGIS_MAINDBNAME=cloud_data",
+                        "GEOSERVER_HOST=geoserver",
+                        "LICENSE_HOST=https://license.ankageo.com/api/v1",
+                        "POSTGIS_LAS_HOST=dev_lasdb",
+                        "PANO_HOST=http://dev_pano:9010/",
+                        "POSTGIS_PASSWORD=anka_vision",
+                        "PANOGPS_TEMP_FOLDER_PATH=/tmp",
+                        "LOG_LEVEL=debug",
+                        "LICENSE_TOKEN=.",
+                        "LDAP_AUTH=false",
+                        "GEOSERVER_PORT=8080",
+                        "ACCESS_TOKEN_EXPIRE_TIME=12h",
+                        "POSTGIS_LASDBNAME=pc_cloud",
+                        "POSTGIS_LAS_PORT=5432",
+                        "POSTGIS_NEWADMINDBNAME=cloud_admin",
+                        "PANO_PORT=9010",
+                        "CLOUD_ACCESS_SECRET_JWT_KEY=%%$^$di)(*khklkjkkx89xxxxxasjosd)HKGTTU*&&^&_)IHJVHJHKBHFR&YBUKJLKJJHHGUYUJHjfhdgutuyiyihbKKLKKH*Y()((*&&^*&^*^))",
+                        "REFRESH_TOKEN_MAX_AGE=60 * 24 * 3600 * 1000",
+                        "BODY_PARSER_BODY_LIMIT=8mb",
+                        "PANOGPS_FOLDER_PATH=/pano",
+                        "REFRESH_TOKEN_EXPIRE_TIME=1h",
+                        "ATTACHMENT_FOLDER_PATH=/attachment",
+                        "REDIS_PORT=6379",
+                        "PORT=9000",
+                        "GEOSERVER_ADMIN_USER=admin",
+                        "POSTGIS_HOST=dev_appdb",
+                        "TOKEN_EXPIRE_TIME=24h",
+                        "POSTGIS_PORT=5432",
+                        "GEOSERVER_ADMIN_PASS=safranbolu2020",
+                        "ALLOW_NODE_CACHE=true",
+                        "JWT_KEY=grfwg67423t67ft4gfAhmad23t4f26734f253f4g7623",
+                        "RASTER_FOLDER_PATH=/data",
+                        "BACKEND_HOST=http://dev_backend:9000/",
+                        "POSTGIS_ADMINDBNAME=cloud_admin",
+                        "REDIS_HOST=dev_redis",
+                        "GEOSERVER_SERVICE=http://geoserver:8080/geoserver/",
+                        "CLOUD_REFRESH_SECRET_JWT_KEY=nbiqwhdiqbnd_+)(*qjsdqwsh%*)(wdiquwe9uuew9817394y213je4o2W$#^%$&^*@1i3je9qdjkndasdj9a8seoqwehj!@"
+                    ],
+                    "Init": false,
+                    "Mounts": [
+                        {
+                            "Type": "bind",
+                            "Source": "/home/jenkins/services/development/attachment",
+                            "Target": "/attachment"
+                        },
+                        {
+                            "Type": "bind",
+                            "Source": "/mnt/4tb/development/geoserver/data",
+                            "Target": "/data"
+                        },
+                        {
+                            "Type": "bind",
+                            "Source": "/mnt/4tb/development/images/pano",
+                            "Target": "/pano"
+                        },
+                        {
+                            "Type": "bind",
+                            "Source": "/mnt/4tb/development/images/tmp",
+                            "Target": "/tmp"
+                        }
+                    ],
+                    "DNSConfig": {},
+                    "Isolation": "default"
+                },
+                "Resources": {
+                    "Limits": {},
+                    "Reservations": {}
+                },
+                "Placement": {
+                    "Platforms": [
+                        {
+                            "Architecture": "amd64",
+                            "OS": "linux"
+                        }
+                    ]
+                },
+                "Networks": [
+                    {
+                        "Target": "v72c00bt6kzk6rjlcpe3cgv5q"
+                    }
+                ],
+                "ForceUpdate": 0,
+                "Runtime": "container"
+            },
+            "Mode": {
+                "Replicated": {
+                    "Replicas": 1
+                }
+            },
+            "EndpointSpec": {
+                "Mode": "vip",
+                "Ports": [
+                    {
+                        "Protocol": "tcp",
+                        "TargetPort": 9000,
+                        "PublishedPort": 6000,
+                        "PublishMode": "ingress"
+                    }
+                ]
+            }
+        },
+        "Endpoint": {
+            "Spec": {
+                "Mode": "vip",
+                "Ports": [
+                    {
+                        "Protocol": "tcp",
+                        "TargetPort": 9000,
+                        "PublishedPort": 6000,
+                        "PublishMode": "ingress"
+                    }
+                ]
+            },
+            "Ports": [
+                {
+                    "Protocol": "tcp",
+                    "TargetPort": 9000,
+                    "PublishedPort": 6000,
+                    "PublishMode": "ingress"
+                }
+            ],
+            "VirtualIPs": [
+                {
+                    "NetworkID": "pjvu1w3ni15xqbhwveop6qljl",
+                    "Addr": "10.0.0.145/24"
+                },
+                {
+                    "NetworkID": "v72c00bt6kzk6rjlcpe3cgv5q",
+                    "Addr": "10.0.1.166/24"
+                }
+            ]
+        },
+        "UpdateStatus": {
+            "State": "completed",
+            "StartedAt": "2022-01-04T13:07:23.977356064Z",
+            "CompletedAt": "2022-01-04T13:07:44.340632371Z",
+            "Message": "update completed"
+        }
+    }
+]
