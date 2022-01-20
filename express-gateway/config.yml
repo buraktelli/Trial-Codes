@@ -1,0 +1,5 @@
+services:
+  - name: users
+    url: http://localhost:3001
+  - name: products
+    url: http://localhost:3002
