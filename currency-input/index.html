@@ -1,0 +1,32 @@
+<body>
+    <!-- 
+      Put inputmode numeric to mobile show only numbers 
+    -->
+    <input id="myInput" inputmode="numeric" value="0,00">
+ 
+    <script src="./node_modules/simple-mask-money/lib/simple-mask-money.js"></script> 
+    <script>
+ 
+      // configuration
+      const args = {
+        afterFormat(e) { console.log('afterFormat', e); },
+        allowNegative: false,
+        beforeFormat(e) { console.log('beforeFormat', e); },
+        negativeSignAfter: false,
+        prefix: '',
+        suffix: '',
+        fixed: true,
+        fractionDigits: 2,
+        decimalSeparator: ',',
+        thousandsSeparator: '.',
+        cursor: 'move'
+      };
+ 
+      // select the element
+      const input = SimpleMaskMoney.setMask('#myInput', args);
+ 
+      // This method return value of your input in format number to save in your database
+      input.formatToNumber();
+ 
+    </script> 
+  </body>

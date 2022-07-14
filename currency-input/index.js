@@ -1,0 +1,1 @@
+const {} = require('simple-mask-money')
